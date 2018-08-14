@@ -60,10 +60,8 @@ fn checksum(addr: &str, addr_hash: &str) -> String {
 
         // If ith hash char is greater than 8, capitilize ith addr char
         if hash_char.to_digit(15) > Some(8) {
-            println!("is upper case");
-            checksum_addr.insert(i, c);
+            checksum_addr.extend(c.to_uppercase());
         } else {
-            println!("is lower case");
             checksum_addr.insert(i, c);
         }
     }
