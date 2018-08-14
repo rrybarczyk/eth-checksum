@@ -9,6 +9,11 @@ fn main() {
 
     // Add addr validity checks
 
+    println!("{}", eth_checksum(addr));
+}
+
+fn eth_checksum(addr: &str) -> String {
+
     // Remove "0x" prefix if exists and make everything lowercase
     let lc_addr = strip_0x(addr).to_lowercase();
 
@@ -16,7 +21,7 @@ fn main() {
     let haddr = hash_addr(&lc_addr);
 
     // Print final checksum
-    println!("checksum: {}", checksum(&lc_addr, &haddr));
+    checksum(&lc_addr, &haddr)
 }
 
 // Remove "0x" prefix
@@ -60,6 +65,12 @@ fn checksum(addr: &str, addr_hash: &str) -> String {
             checksum_addr.push(c);
         }
     }
-
     checksum_addr
+}
+
+
+#[test]fn test_eth_checksum() {
+    let addr = "0x5699b1a504f139100b889c7280074c028eb318bb";
+    let res = "5699b1a504f139100B889C7280074C028eb318bB";
+    assert_eq!(eth_checksum(addr), res);
 }
