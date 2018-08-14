@@ -1,0 +1,8 @@
+[package]
+name = "eth-checksum"
+version = "0.1.0"
+authors = ["Rachel <rachel@summa.one>"]
+
+[dependencies]
+regex = "1"
+sha3 = "0.7.3"
